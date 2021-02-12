@@ -40,7 +40,7 @@ export default function Home() {
 						"url(https://unsplash.com/photos/EdULZpOKsUE/download?force=true&w=1920)",
 				}}
 			>
-				<Navigation classes="" />
+				<Navigation classes="" login={login} logout={logout} />
 				<h1 className="self-center text-5xl font-bold tracking-wide text-gray-900 justify-self-center">
 					Start a fire in your heart
 				</h1>
@@ -49,7 +49,11 @@ export default function Home() {
 	);
 }
 
-function Navigation(props: { classes: string }) {
+function Navigation(props: {
+	classes: string;
+	login: Function;
+	logout: Function;
+}) {
 	return (
 		<div
 			id="Navigation"
@@ -57,16 +61,31 @@ function Navigation(props: { classes: string }) {
 		>
 			<p className="text-4xl font-semibold text-red-500">Firestarter</p>
 			<div className="flex gap-2 ">
-				<Button borderColor="border-blue-500" text="Log In" />
-				<Button borderColor="border-red-500" text="Sign Up" />
+				<Button
+					borderColor="border-blue-500"
+					text="Log In"
+					onClick={() => props.login()}
+				/>
+				<Button
+					borderColor="border-red-500"
+					text="Sign Up"
+					onClick={() => {}}
+				/>
 			</div>
 		</div>
 	);
 }
 
-function Button(props: { text: string; borderColor: string }) {
+function Button(props: {
+	text: string;
+	borderColor: string;
+	onClick: Function;
+}) {
 	return (
-		<button className={`${props.borderColor} rounded-lg p-2 border-2`}>
+		<button
+			className={`${props.borderColor} rounded-lg p-2 border-2`}
+			onClick={() => props.onClick()}
+		>
 			<p className="font-semibold text-gray-100">{props.text}</p>
 		</button>
 	);
