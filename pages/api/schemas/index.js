@@ -5,6 +5,8 @@ export const typeDefs = gql`
 		id: ID
 		login: String
 		name: String
+		location: String
+		description: String
 		avatar_url: String
 	}
 
