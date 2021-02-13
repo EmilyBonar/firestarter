@@ -28,41 +28,61 @@ export default function Home() {
 			setUser(null);
 		});
 	};
-	console.log(loggedIn);
+	console.log(user);
 	return (
 		<>
 			<Head>
 				<title>Firestarter</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div
-				className="grid w-screen h-screen bg-fixed bg-center bg-cover"
-				style={{
-					backgroundImage:
-						"url(https://unsplash.com/photos/EdULZpOKsUE/download?force=true&w=1920)",
-				}}
-			>
-				<Navigation classes="" onClick={loggedIn ? logout : login} />
-				<h1 className="text-6xl font-bold tracking-wide text-center text-red-500 place-self-center">
-					Start a fire in your heart
-				</h1>
-			</div>
+			<Navigation
+				classes=""
+				loggedIn={loggedIn}
+				login={login}
+				logout={logout}
+			/>
+			{loggedIn ? <MainScreen /> : <SplashScreen />}
 		</>
 	);
 }
 
-function Navigation(props: { classes: string; onClick: Function }) {
+function MainScreen() {
+	return <div></div>;
+}
+
+function SplashScreen() {
+	return (
+		<div
+			className="grid w-screen h-screen bg-fixed bg-center bg-cover"
+			style={{
+				backgroundImage:
+					"linear-gradient(gray,25%,transparent), url(https://unsplash.com/photos/EdULZpOKsUE/download?force=true&w=1920)",
+			}}
+		>
+			<h1 className="text-6xl font-bold tracking-wide text-center text-red-500 place-self-center">
+				Start a fire in your heart
+			</h1>
+		</div>
+	);
+}
+
+function Navigation(props: {
+	classes: string;
+	loggedIn: boolean;
+	login: Function;
+	logout: Function;
+}) {
 	return (
 		<div
 			id="Navigation"
-			className={`flex flex-wrap justify-between p-2 bg-black bg-opacity-25 content-end fixed w-screen ${props.classes}`}
+			className={`flex flex-wrap justify-between p-2 bg-gray-600 bg-opacity-80 content-end fixed w-screen ${props.classes}`}
 		>
 			<p className="text-4xl font-semibold text-red-500">Firestarter</p>
 			<div className="flex gap-2 ">
 				<Button
 					borderColor="border-red-500"
-					text="Log In or Sign Up"
-					onClick={() => props.onClick()}
+					text={props.loggedIn ? "Log Out" : "Log In or Sign Up"}
+					onClick={props.loggedIn ? props.logout : props.login}
 				/>
 			</div>
 		</div>
