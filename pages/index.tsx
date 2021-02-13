@@ -59,9 +59,9 @@ function MainScreen() {
 function PersonCard() {
 	return (
 		<>
-			<div className="z-10 flex flex-col w-5/6 max-w-md bg-gray-200 border border-gray-300 rounded-lg shadow-lg md:w-2/3 h-3/4">
+			<div className="z-10 flex flex-col w-5/6 max-w-md bg-gray-200 border border-gray-300 rounded-lg shadow-lg md:w-2/3 h-3/4 min-w-max">
 				<img
-					className="object-contain object-center h-2/3"
+					className="object-contain object-center rounded-t-lg h-2/3"
 					src="https://www.thispersondoesnotexist.com/image"
 				></img>
 				<main className="flex flex-col px-4 py-2">
@@ -69,7 +69,7 @@ function PersonCard() {
 						<h2 className="text-5xl font-bold tracking-wide text-gray-800">
 							Jane Doe
 						</h2>
-						<div className="flex flex-col self-start text-xl text-right text-gray-500">
+						<div className="flex flex-col self-start text-xl text-right text-gray-500 min-w-max">
 							<h3 className="">48 years old</h3>
 							<h3></h3>Female
 						</div>
@@ -94,7 +94,7 @@ function ReactionButton(props: { side: "right" | "left" }) {
 			<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
 		);
 		color = "bg-red-500";
-		offset = "-right-4";
+		offset = "left-4";
 	} else {
 		symbol = (
 			<>
@@ -103,11 +103,11 @@ function ReactionButton(props: { side: "right" | "left" }) {
 			</>
 		);
 		color = "bg-gray-500";
-		offset = "-left-4";
+		offset = "right-4";
 	}
 	return (
 		<div
-			className={`z-40 grid w-40 h-40 ${color} rounded-full place-items-center relative ${offset}`}
+			className={`z-40 grid w-36 h-36 ${color} rounded-full place-items-center relative ${offset}`}
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -129,9 +129,9 @@ function ReactionButton(props: { side: "right" | "left" }) {
 function CardDecorator(props: { side: "left" | "right" }) {
 	let side = "";
 	if (props.side === "left") {
-		side = "-left-1/4 -bottom-2";
+		side = "right-96 -bottom-2";
 	} else {
-		side = "-right-1/4 -bottom-2";
+		side = "left-96 -bottom-2";
 	}
 	return (
 		<div
