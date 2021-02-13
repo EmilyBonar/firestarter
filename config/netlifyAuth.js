@@ -1,10 +1,10 @@
-import * as NetlifyIdentityWidget from "netlify-identity-widget";
+import netlifyIdentity from "netlify-identity-widget";
 
 const netlifyAuth = {
 	isAuthenticated: false,
 	user: null,
 	initialize(callback) {
-		window.netlifyIdentity = NetlifyIdentityWidget;
+		window.netlifyIdentity = netlifyIdentity;
 		netlifyIdentity.on("init", (user) => {
 			callback(user);
 		});
