@@ -58,55 +58,70 @@ function MainScreen() {
 
 function PersonCard() {
 	return (
-		<div className="z-10 flex flex-col w-5/6 max-w-lg overflow-hidden bg-gray-200 border border-gray-300 rounded-lg shadow-lg md:w-2/3 h-3/4">
-			<img
-				className="object-contain object-center h-2/3"
-				src="https://www.thispersondoesnotexist.com/image"
-			></img>
-			<main className="flex flex-col px-4 py-2">
-				<div className="flex flex-row items-end justify-between pb-2 border-b-2 border-gray-300">
-					<h2 className="text-5xl font-bold tracking-wide text-gray-800">
-						Jane Doe
-					</h2>
-					<div className="flex flex-col self-start text-xl text-right text-gray-500">
-						<h3 className="">48 years old</h3>
-						<h3></h3>Female
+		<>
+			<div className="z-10 flex flex-col w-5/6 max-w-md bg-gray-200 border border-gray-300 rounded-lg shadow-lg md:w-2/3 h-3/4">
+				<img
+					className="object-contain object-center h-2/3"
+					src="https://www.thispersondoesnotexist.com/image"
+				></img>
+				<main className="flex flex-col px-4 py-2">
+					<div className="flex flex-row items-end justify-between pb-2 border-b-2 border-gray-300">
+						<h2 className="text-5xl font-bold tracking-wide text-gray-800">
+							Jane Doe
+						</h2>
+						<div className="flex flex-col self-start text-xl text-right text-gray-500">
+							<h3 className="">48 years old</h3>
+							<h3></h3>Female
+						</div>
 					</div>
-				</div>
-			</main>
-			<div className="flex flex-row justify-between h-full text-center text-white text-8xl">
-				<div className="grid w-56 bg-gray-500 rounded-tr-3xl place-items-center">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="96"
-						height="96"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					>
-						<line x1="18" y1="6" x2="6" y2="18"></line>
-						<line x1="6" y1="6" x2="18" y2="18"></line>
-					</svg>
-				</div>
-				<div className="grid w-56 bg-red-500 rounded-tl-3xl place-items-center">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="96"
-						height="96"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					>
-						<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-					</svg>
+					<p className="py-2 text-lg text-gray-600">Looking to find a spark</p>
+				</main>
+				<div className="flex flex-row justify-between h-full text-center text-white text-8xl">
+					<ReactionButton side="left" />
+					<ReactionButton side="right" />
 				</div>
 			</div>
+		</>
+	);
+}
+
+function ReactionButton(props: { side: "right" | "left" }) {
+	let symbol: JSX.Element;
+	let color: string;
+	let offset: string;
+	if (props.side == "right") {
+		symbol = (
+			<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+		);
+		color = "bg-red-500";
+		offset = "-right-4";
+	} else {
+		symbol = (
+			<>
+				<line x1="18" y1="6" x2="6" y2="18"></line>
+				<line x1="6" y1="6" x2="18" y2="18"></line>
+			</>
+		);
+		color = "bg-gray-500";
+		offset = "-left-4";
+	}
+	return (
+		<div
+			className={`z-40 grid w-40 h-40 ${color} rounded-full place-items-center relative ${offset}`}
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="96"
+				height="96"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			>
+				{symbol}
+			</svg>
 		</div>
 	);
 }
@@ -120,7 +135,7 @@ function CardDecorator(props: { side: "left" | "right" }) {
 	}
 	return (
 		<div
-			className={`relative z-0 w-16 bg-gray-300 shadow-lg h-3/4 ${side} rounded-lg w-2/3 max-w-lg`}
+			className={`relative z-0 w-16 bg-gray-300 shadow-lg h-3/4 ${side} rounded-lg w-2/3 max-w-md`}
 		></div>
 	);
 }
