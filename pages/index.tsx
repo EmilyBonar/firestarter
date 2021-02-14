@@ -49,9 +49,8 @@ export default function Home() {
 function MainScreen() {
 	return (
 		<div className="flex justify-center h-screen bg-gray-200 place-items-center">
-			<CardDecorator side="right" />
+			<CardDecorator />
 			<PersonCard />
-			<CardDecorator side="left" />
 		</div>
 	);
 }
@@ -59,7 +58,7 @@ function MainScreen() {
 function PersonCard() {
 	return (
 		<>
-			<div className="z-10 flex flex-col w-5/6 max-w-md bg-gray-200 border border-gray-300 rounded-lg shadow-lg md:w-2/3 h-3/4 min-w-max">
+			<div className="z-10 flex flex-col max-w-md bg-gray-200 border border-gray-300 rounded-lg shadow-lg w-80 h-3/4 min-w-max">
 				<img
 					className="object-contain object-center rounded-t-lg h-2/3"
 					src="https://www.thispersondoesnotexist.com/image"
@@ -107,7 +106,7 @@ function ReactionButton(props: { side: "right" | "left" }) {
 	}
 	return (
 		<div
-			className={`z-40 grid w-36 h-36 ${color} rounded-full place-items-center relative ${offset}`}
+			className={`z-40 grid w-30 h-30 ${color} rounded-full place-items-center relative ${offset}`}
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -126,16 +125,10 @@ function ReactionButton(props: { side: "right" | "left" }) {
 	);
 }
 
-function CardDecorator(props: { side: "left" | "right" }) {
-	let side = "";
-	if (props.side === "left") {
-		side = "right-96 -bottom-2";
-	} else {
-		side = "left-96 -bottom-2";
-	}
+function CardDecorator() {
 	return (
 		<div
-			className={`relative z-0 w-16 bg-gray-300 shadow-lg h-3/4 ${side} rounded-lg w-2/3 max-w-md`}
+			className={`absolute z-0 bg-gray-300 shadow-lg h-3/4 top-28 rounded-lg max-w-md w-full`}
 		></div>
 	);
 }
